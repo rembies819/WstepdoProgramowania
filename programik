@@ -1,0 +1,194 @@
+// projektwstep.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+void wyswietl(vector<int>liczby)
+{
+	for (int i = 0; i < liczby.size(); i++)
+	{
+		cout << liczby[i] << ", ";
+	}
+	cout << endl;
+}
+int suma(vector<int>liczby)
+{
+	int x = 0;
+	for (int i = 0; i < liczby.size(); i++)
+	{
+		x += liczby[i];
+	}
+	return x;
+}
+float srednia(vector<int>liczby)
+{
+	float wynik = suma(liczby);
+	return wynik / liczby.size();
+
+}
+int min(vector<int>liczby)
+{
+	int m = liczby[0];
+		for (int i = 1; i < liczby.size(); i++)
+		{
+		if(liczby[i]<m)
+		{
+			m = liczby[i];
+		}
+		}
+	return m;
+}
+int max(vector<int>liczby)
+{
+	int z = liczby[0];
+	for (int i = 1; i < liczby.size(); i++)
+	{
+		if (liczby[i]>z)
+		{
+			z = liczby[i];
+		}
+	}
+	return z;
+}
+bool czyNalezy(vector<int>liczby, int n)
+{
+	for (int i = 0; i < liczby.size(); i++)
+	{
+		if (liczby[i] == n)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool czyZawiera(vector<int>zbior, vector<int>podzbior)
+{
+	for (int i = 0; i < podzbior.size(); i++)
+	{
+		if (!czyNalezy(zbior, podzbior[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool unikalno(vector<int>liczby)
+{
+	int x = liczby[0];
+	for (int i = 1; i < liczby.size(); i++)
+	{
+		if (liczby[i] == x)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+vector<int>unikalnosc(vector<int>zbior)
+{
+	vector<int>wynik;
+	for (int i = 0; i < zbior.size(); i++)
+	{
+		if (!czyNalezy(wynik, zbior[i]))
+		{
+			wynik.push_back(zbior[i]);
+		}
+	}
+	return wynik;
+}
+bool czyNalezy(map<int, int>mapa, int wartosc)
+{
+	for each(auto item in mapa)                           //liczby[i] == item
+	{
+		if (item.second == wartosc)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool czyNalezyIndeks(map<int, int>mapa, int wartosc)
+{
+	for each(auto item in mapa)                           //liczby[i] == item
+	{
+		if (item.first == wartosc)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+void wyswietl(map<int, int>mapa)
+{
+	for each(auto item in mapa)
+	{
+		cout << item.first << "=>" << item.second << " ";
+	}
+	cout << endl;
+}
+map<int, int> czestosc(vector<int>liczby)
+{
+	map<int, int>wynik;
+	for (int i = 0; i < liczby.size(); i++)
+	{
+		if (!czyNalezyIndeks(wynik, liczby[i]))
+		{
+			wynik.insert(pair<int, int>(liczby[i], 1));
+		}
+		else
+		{
+			wynik[liczby[i]]++;//i=5=>wynik[liczby[5]]++=>wynik[1]++=>1++=>2
+		}
+	}
+	return wynik;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	vector <int> liczby;
+	vector<int>zbior;
+	vector<int>podzbior;
+	zbior.push_back(5);
+	zbior.push_back(1);
+	zbior.push_back(8);
+	zbior.push_back(3);
+	zbior.push_back(2);
+	podzbior.push_back(3);
+	podzbior.push_back(5);
+	podzbior.push_back(1);
+	liczby.push_back(5);
+	liczby.push_back(3);
+	liczby.push_back(11);
+	liczby.push_back(13);
+	liczby.push_back(13);
+	liczby.push_back(1);
+	cout << liczby.size() << endl;
+
+	wyswietl(liczby);
+	wyswietl(liczby);
+	int x = suma(liczby);
+	cout <<"suma: "<< x << endl;
+	float y = srednia(liczby);
+	cout <<"srednia: "<< y << endl;
+	cout<<"min: "<< min(liczby) << endl;
+	cout<<"max: "<< max(liczby) << endl;
+	cout <<"czy nalezy: "<< czyNalezy(liczby,5) << endl;
+	cout << "czy zawiera: " << czyZawiera(zbior,podzbior) << endl;
+	cout << "unikalnosc: "; wyswietl(unikalnosc(liczby));
+	map<int, int>mapa; //first gorna czesc, second dolna czesc, sklada sie z pary
+	mapa.insert(pair<int, int>(9, 3));
+	cout << "wielkosc mapy: " << mapa.size() << endl;
+	cout <<"Druga liczba pierwszej pary to: "<< mapa[9] << endl;
+	cout<< "Pary mapy to: "; wyswietl(mapa);
+	map<int, int>wynik2 = czestosc(liczby);
+	wyswietl(wynik2);
+	wyswietl(czestosc(liczby));
+	system("pause");
+	return 0;
+}
