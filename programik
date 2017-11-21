@@ -5,6 +5,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <stdlib.h>
+#include <cstdio>
+#include <ctime>
 
 using namespace std;
 
@@ -148,7 +151,18 @@ map<int, int> czestosc(vector<int>liczby)
 	}
 	return wynik;
 }
-
+vector<int> generuj(int ile)
+{
+	vector<int> wynik;
+	srand(time(NULL));
+	for (int i = 0; i < ile; i++) 
+	{
+		int element = rand() %1000;
+		wynik.push_back(element);
+	}
+	return wynik;
+}
+//najpierw jest wiersz potem kolumna  i=wiersz, j=kolumna
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector <int> liczby;
@@ -189,6 +203,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	map<int, int>wynik2 = czestosc(liczby);
 	wyswietl(wynik2);
 	wyswietl(czestosc(liczby));
+	
+
+	vector<int>b = generuj(10);
+	wyswietl(b);
+
+
+
+
+
+
+
+
 	system("pause");
 	return 0;
 }
+
