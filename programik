@@ -162,6 +162,26 @@ vector<int> generuj(int ile)
 	}
 	return wynik;
 }
+vector<vector<int>>generuj(int wiersz, int kolumna)
+{
+	vector<vector<int>>wynik;
+	for (int i = 0; i < wiersz; i++)
+	{
+		vector<int>element = generuj(kolumna);
+		wynik.push_back(element);
+	}
+	return wynik;
+}
+
+void wyswietl(vector<vector<int>>tab)
+{
+	for (int i = 0; tab.size(); i++)
+	{
+		wyswietl(tab[i]);
+	}
+	cout << endl;
+}
+
 //najpierw jest wiersz potem kolumna  i=wiersz, j=kolumna
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -203,7 +223,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	map<int, int>wynik2 = czestosc(liczby);
 	wyswietl(wynik2);
 	wyswietl(czestosc(liczby));
-	
+	vector<vector <int>> wynik3 = generuj(3, 5);
+	wyswietl(wynik3);
 
 	vector<int>b = generuj(10);
 	wyswietl(b);
