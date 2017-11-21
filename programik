@@ -154,7 +154,6 @@ map<int, int> czestosc(vector<int>liczby)
 vector<int> generuj(int ile)
 {
 	vector<int> wynik;
-	srand(time(NULL));
 	for (int i = 0; i < ile; i++) 
 	{
 		int element = rand() %1000;
@@ -175,7 +174,7 @@ vector<vector<int>>generuj(int wiersz, int kolumna)
 
 void wyswietl(vector<vector<int>>tab)
 {
-	for (int i = 0; tab.size(); i++)
+	for (int i = 0;i< tab.size(); i++)
 	{
 		wyswietl(tab[i]);
 	}
@@ -185,6 +184,7 @@ void wyswietl(vector<vector<int>>tab)
 //najpierw jest wiersz potem kolumna  i=wiersz, j=kolumna
 int _tmain(int argc, _TCHAR* argv[])
 {
+	srand(time(NULL));
 	vector <int> liczby;
 	vector<int>zbior;
 	vector<int>podzbior;
@@ -223,7 +223,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	map<int, int>wynik2 = czestosc(liczby);
 	wyswietl(wynik2);
 	wyswietl(czestosc(liczby));
-	vector<vector <int>> wynik3 = generuj(3, 5);
+
+
+	vector<vector <int>> wynik3 = generuj(3,5);
 	wyswietl(wynik3);
 
 	vector<int>b = generuj(10);
