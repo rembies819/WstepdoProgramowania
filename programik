@@ -180,7 +180,19 @@ void wyswietl(vector<vector<int>>tab)
 	}
 	cout << endl;
 }
-
+vector<int>kolumna(vector<vector<int>>tab,int nrkolumny)
+{
+	vector<int>wynik;
+	for (int i = 0; i < tab.size(); i++)
+	{
+		int liczba = tab[i][nrkolumny];
+			wynik.push_back(liczba);
+	}
+return wynik;
+}
+//wtorek 19:30-21:00
+//niedziela 17:00-18:30
+//tab[i][j] to int pojedyncza rzecz Kappa
 //najpierw jest wiersz potem kolumna  i=wiersz, j=kolumna
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -230,6 +242,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	vector<int>b = generuj(10);
 	wyswietl(b);
+
+	wyswietl(kolumna(generuj(3, 5), 2));
 
 
 
