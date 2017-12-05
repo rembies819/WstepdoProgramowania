@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void wyswietl(vector<int>liczby)
+void wyswietl(vector<int>&liczby)
 {
 	for (int i = 0; i < liczby.size(); i++)
 	{
@@ -19,7 +19,7 @@ void wyswietl(vector<int>liczby)
 	}
 	cout << endl;
 }
-int suma(vector<int>liczby)
+int suma(vector<int>&liczby)
 {
 	int x = 0;
 	for (int i = 0; i < liczby.size(); i++)
@@ -28,13 +28,13 @@ int suma(vector<int>liczby)
 	}
 	return x;
 }
-float srednia(vector<int>liczby)
+float srednia(vector<int>&liczby)
 {
 	float wynik = suma(liczby);
 	return wynik / liczby.size();
 
 }
-int min(vector<int>liczby)
+int min(vector<int>&liczby)
 {
 	int m = liczby[0];
 		for (int i = 1; i < liczby.size(); i++)
@@ -46,7 +46,7 @@ int min(vector<int>liczby)
 		}
 	return m;
 }
-int max(vector<int>liczby)
+int max(vector<int>&liczby)
 {
 	int z = liczby[0];
 	for (int i = 1; i < liczby.size(); i++)
@@ -58,7 +58,7 @@ int max(vector<int>liczby)
 	}
 	return z;
 }
-bool czyNalezy(vector<int>liczby, int n)
+bool czyNalezy(vector<int>&liczby, int n)
 {
 	for (int i = 0; i < liczby.size(); i++)
 	{
@@ -69,7 +69,7 @@ bool czyNalezy(vector<int>liczby, int n)
 	}
 	return false;
 }
-bool czyZawiera(vector<int>zbior, vector<int>podzbior)
+bool czyZawiera(vector<int>&zbior, vector<int>&podzbior)
 {
 	for (int i = 0; i < podzbior.size(); i++)
 	{
@@ -80,7 +80,6 @@ bool czyZawiera(vector<int>zbior, vector<int>podzbior)
 	}
 	return true;
 }
-
 bool unikalno(vector<int>liczby)
 {
 	int x = liczby[0];
@@ -93,7 +92,7 @@ bool unikalno(vector<int>liczby)
 	}
 	return true;
 }
-vector<int>unikalnosc(vector<int>zbior)
+vector<int>unikalnosc(vector<int>&zbior)
 {
 	vector<int>wynik;
 	for (int i = 0; i < zbior.size(); i++)
@@ -105,7 +104,7 @@ vector<int>unikalnosc(vector<int>zbior)
 	}
 	return wynik;
 }
-bool czyNalezy(map<int, int>mapa, int wartosc)
+bool czyNalezy(map<int, int>&mapa, int wartosc)
 {
 	for each(auto item in mapa)                           //liczby[i] == item
 	{
@@ -116,7 +115,7 @@ bool czyNalezy(map<int, int>mapa, int wartosc)
 	}
 	return false;
 }
-bool czyNalezyIndeks(map<int, int>mapa, int wartosc)
+bool czyNalezyIndeks(map<int, int>&mapa, int wartosc)
 {
 	for each(auto item in mapa)                           //liczby[i] == item
 	{
@@ -127,7 +126,7 @@ bool czyNalezyIndeks(map<int, int>mapa, int wartosc)
 	}
 	return false;
 }
-void wyswietl(map<int, int>mapa)
+void wyswietl(map<int, int>&mapa)
 {
 	for each(auto item in mapa)
 	{
@@ -135,7 +134,7 @@ void wyswietl(map<int, int>mapa)
 	}
 	cout << endl;
 }
-map<int, int> czestosc(vector<int>liczby)
+map<int, int> czestosc(vector<int>&liczby)
 {
 	map<int, int>wynik;
 	for (int i = 0; i < liczby.size(); i++)
@@ -171,8 +170,7 @@ vector<vector<int>>generuj(int wiersz, int kolumna)
 	}
 	return wynik;
 }
-
-void wyswietl(vector<vector<int>>tab)
+void wyswietl(vector<vector<int>>&tab)
 {
 	for (int i = 0;i< tab.size(); i++)
 	{
@@ -180,7 +178,7 @@ void wyswietl(vector<vector<int>>tab)
 	}
 	cout << endl;
 }
-vector<int>kolumna(vector<vector<int>>tab,int nrkolumny)
+vector<int>kolumna(vector<vector<int>>&tab, int nrkolumny)
 {
 	vector<int>wynik;
 	for (int i = 0; i < tab.size(); i++)
@@ -247,7 +245,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-
+//min z macierzy, i odleglos od domow, vector domow
 
 
 
