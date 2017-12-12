@@ -188,6 +188,26 @@ vector<int>kolumna(vector<vector<int>>&tab, int nrkolumny)
 	}
 return wynik;
 }
+//dodawanie, odejmowanie, iloczyn skalarny 2 wektow, wyznacznik, macierz odwrotna
+int maxk = m2.size();
+int ileW;
+int ileK;
+vector<vector<int>>wynik;
+for (int i = 0; i < ileW; i++)
+{
+	wynik.push_back(vector<int>())
+	for (int j = 0; j < ileK; j++)
+	{
+		int suma = 0;
+		for (int k = 0; k < maxk; k++)
+		{
+			suma += m1[i][k] * m2[k][j];
+		}
+		wynik[i].push_back(suma);
+	}
+}
+
+
 //wtorek 19:30-21:00
 //niedziela 17:00-18:30
 //tab[i][j] to int pojedyncza rzecz Kappa
@@ -245,7 +265,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-//min z macierzy, i odleglos od domow, vector domow
+
 
 
 
