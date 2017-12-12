@@ -1,0 +1,43 @@
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <map>
+#include <stdlib.h>
+
+using namespace std;
+
+void wyswietl(map<int, int>mapa) //Wyswietl Mapa
+{
+	for each(auto item in mapa)
+	{
+		cout << item.first << "=>" << item.second << ", ";
+	}
+	cout << endl;
+}
+
+map<int, int>rodzina(vector<int>&domki)
+{
+	int odleglosc;
+	map<int, int>wynik;
+	for (int i = 0; i < domki.size(); i++)
+	{
+		odleglosc = 0;
+		for (int j = 0; j < domki.size(); j++)
+		{
+			if (domki[i]<domki[j]) { odleglosc += domki[j] - domki[i]; }
+			if (domki[i]>domki[j]) { odleglosc += domki[i] - domki[j]; }
+		}
+		wynik.insert(pair<int, int>(domki[i], odleglosc));
+	}
+	return wynik;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	vector<int>domki{ 1, 2, 3, 5, 7 };
+	map<int, int>wynik_rodzina = rodzina(domki);
+	wyswietl(wynik_rodzina);
+
+	system("pause");
+	return 0;
+}
