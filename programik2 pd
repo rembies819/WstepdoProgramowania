@@ -1,0 +1,72 @@
+////////////////////////////////////////////////
+////////////// Minimum z macierzy //////////////
+////////////////////////////////////////////////
+
+int min(int a, int b)
+{
+	return (a < b) ? a : b;
+}
+
+int min(vector<int>& liczby)
+{
+	int wynik = liczby[0];
+	for each (int x in liczby) 
+		wynik = min(x, wynik);
+	return wynik;
+}
+
+int min(vector<vector<int>>& macierz)
+{
+	int wynik = min(macierz[0]);           
+	for each (auto wiersz in macierz)         
+	{
+		int min_wiersza = min(wiersz);       
+		wynik = min(min_wiersza, wynik);     
+	}
+	return wynik;
+}
+
+
+////////////////////////////////////////////////
+///////////////////// Domy /////////////////////
+////////////////////////////////////////////////
+
+int dystans(int dom1, int dom2)
+{
+	return abs(dom1 - dom2);
+}
+
+int suma_dystansow(int sprawdzany_dom, vector<int>& domy)
+{
+	int suma = 0;                                             
+	for each (int kolejny_dom in domy)                        
+		suma += dystans(sprawdzany_dom, kolejny_dom);       
+	return suma;
+}
+
+int najlepszy_dom(vector<int>& domy)
+{
+	int najlepszy_dom = domy[0];
+	for each (int kolejny_dom in domy)
+		if (suma_dystansow(kolejny_dom, domy) < suma_dystansow(najlepszy_dom, domy))
+			najlepszy_dom = kolejny_dom;
+	return najlepszy_dom;
+}
+
+
+int main()
+{
+	vector<int> domy = { 1, 3, 5, 6 };
+	cout << najlepszy_dom(domy) << endl;
+
+	vector<vector<int>> m = {
+		{ 1, 5, 6 },
+		{ 6, 4, 8 },
+		{ 7, 2, 3 }
+	};
+
+	cout << min(m) << endl;
+
+	getchar();
+	return 0;
+}
