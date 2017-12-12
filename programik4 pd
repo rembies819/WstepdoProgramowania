@@ -1,0 +1,83 @@
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <map>
+#include <stdlib.h>
+
+using namespace std;
+
+void wyswietl_wektor(vector<int>&wektor)
+{
+	for (int i = 0; i < wektor.size(); i++)
+	{
+		cout << wektor[i] << ", ";
+	}
+	cout << endl;
+}
+
+int min(vector<int>&wektor)
+{
+	int wynik = wektor[0];
+	for (int i = 1; i < wektor.size(); i++)
+	{
+		if (wektor[i]<wynik)
+		{
+			wynik = wektor[i];
+		}
+	}
+	return wynik;
+}
+
+vector<int> generuj_wektor(int ile_kolumn)
+{
+	vector<int>wynik;
+	for (int i = 0; i < ile_kolumn; i++)
+	{
+		int element = rand() % 10;
+		wynik.push_back(element);
+	}
+	return wynik;
+}
+
+vector<vector<int>> generuj_dwu_wymiarowa(int ile_kolumn, int ile_wierszy)
+{
+	vector<vector<int>> wynik;
+	for (int i = 0; i < ile_kolumn; i++)
+	{
+		vector<int> element = generuj_wektor(ile_wierszy);
+		wynik.push_back(element);
+	}
+	return wynik;
+}
+
+void wyswietl_generuj(vector<vector<int>>&tablica)
+{
+	for (int i = 0; i < tablica.size(); i++)
+	{
+		wyswietl_wektor(tablica[i]);
+	}
+	cout << endl;
+}
+
+int min(vector<vector<int>>&tablica)
+{
+	int wynik; //Tu będzie najmniejsza wartość z całej tablicy
+	vector<int>minimalne_wartosci; //Wektor do przechowywania najmniejszych wartości pobranych z kolumn
+	for (int i = 0; i < tablica.size(); i++)
+	{
+		wynik = min(tablica[i]); //Przypisanie najmniejszej wartości z kolumny aby ja wrzucić do wektora "minimalne_wartosci"
+		minimalne_wartosci.push_back(wynik); //Wrzucenie wartosci z wynik do wektora
+	}
+	wynik = min(minimalne_wartosci); //Wykonanie minimum na ostatecznym wektorze i przypisanie pojedynczej najmniejszej wartosci z tablicy
+	return wynik;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	vector<vector<int>> tablica_i = generuj_dwu_wymiarowa(4, 5);
+	wyswietl_generuj(tablica_i);
+	cout << "Najmniejsza wartosc w tablicy to:" << min(tablica_i)<<endl;
+	
+	system("pause");
+	return 0;
+}
