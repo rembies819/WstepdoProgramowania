@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+using namespace std;
+
+int odl(vector <int> nrdomow, int wybrany)
+{
+    int wynik = 0;
+    for(int i=0; i<nrdomow.size();i++)
+    {
+        if(nrdomow[i]>nrdomow[wybrany])
+        {
+            wynik+=nrdomow[i]-nrdomow[wybrany];
+        }
+        else
+        wynik+= nrdomow[wybrany] - nrdomow[i];
+    }
+    return wynik;
+}
+int min(vector <int> nrdomow)
+{
+    int min_odl=odl(nrdomow,0);
+   for(int i=0;i<nrdomow.size();i++)
+    {
+       if(odl(nrdomow,i)<min_odl)
+       {
+          min_odl=odl(nrdomow,i);
+       }
+    }
+     return min_odl;
+}
+vector <int> numer_domu(vector <int> nrdomow)
+{
+    vector <int> nr_domu;
+    for(int i=0;i<nrdomow.size();i++)
+    {
+        if(odl(nrdomow,i)==min(nrdomow))
+       {
+           nr_domu.push_back(nrdomow[i]);
+       }
+    }
+    return nr_domu;
+}
+void wyswietl(vector <int> wektor)
+{
+    for (int i=0;i<wektor.size();i++)
+    {
+        cout << wektor[i]<< ", ";
+    }
+}
+
+
+int main()
+{
+    vector <int> domki;
+    domki.push_back(2);
+    domki.push_back(3);
+    domki.push_back(7);
+    domki.push_back(11);
+    cout << "Najmniesza odleglosc= "<< min(domki) << endl;
+    cout << "Domki dla ktorych jest najmniejsza odleglosc: " << endl;
+    wyswietl(numer_domu(domki));
+    cout << endl;
+    cout << endl;
+    system("PAUSE");
+    return 0;
+}
