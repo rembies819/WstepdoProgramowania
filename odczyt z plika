@@ -1,0 +1,75 @@
+// projektwstep.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <map>
+#include <stdlib.h>
+#include <cstdio>
+#include <ctime>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+
+vector<double>stringToVectorDouble(string linia)
+{
+	vector<double>wynik;
+	int i = 0;
+	while (linia[i] != ' ')
+	{
+		i++;
+	}
+	string tmp = linia.substr(0, 1);
+	wynik.push_back(atof(tmp.data()));
+	tmp = linia.substr(i + 1, linia.size() - i - 1);
+	wynik.push_back(atof(tmp.data()));
+	return wynik;
+}
+int _tmain(int argc, _TCHAR* argv[])
+{
+	
+
+	vector < vector<vector<double>> >dane ;
+	vector<vector<double>> zestaw;
+
+	string linia;
+	fstream plik;
+	plik.open("D:/rembies819/vectory/Nowy folder/Plikodczyt/aba.txt", fstream::in | fstream::out);
+	if (plik.good())
+	{
+		while (!plik.eof())
+		{
+			getline(plik, linia);
+			int liczbazestawu = atoi(linia.data());
+			for (int i = 0; i < liczbazestawu; i++)
+			{
+				while (true)
+				{
+					getline(plik, linia);
+					if (linia == "")
+					{
+						dane.push_back(zestaw);
+						zestaw = vector<vector<double>>();
+						break;
+					}
+					vector<double>element = stringToVectorDouble(linia);
+					zestaw.push_back(element);
+					cout << linia << endl;
+				}
+			
+				
+			}
+			
+			
+		}
+		
+	}
+	plik.close();
+
+
+	system("pause");
+	return 0;
+}
