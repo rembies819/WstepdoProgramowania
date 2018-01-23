@@ -103,6 +103,7 @@ int main(){
     int prevsize=4;
     cases=len;
     #else
+    cout<<"Podaj liczbe sprawdzen: ";
     cin>>cases;
     #endif
     while(cases--){
@@ -139,6 +140,7 @@ int main(){
         prevsize=rects.size();
         print(rects);
         #else
+        cout<<"Podaj wielkosc kwadratu(N): ";
         cin>>N;
         for(i=0;primesoln[i][0];i++){
             if(N%primesoln[i][0]==0)break;
@@ -149,7 +151,7 @@ int main(){
         for(i=1;primesoln[a][i];i+=3,k++);
         cout<<k<<endl;
         for(i=1;primesoln[a][i];i+=3)
-            cout<<(primesoln[a][i]-1)*f+1<<" "<<(primesoln[a][i+1]-1)*f+1<<" "<<primesoln[a][i+2]*f<<endl;
+            cout<<(primesoln[a][i+1]-1)*f+1<<" "<<(primesoln[a][i]-1)*f+1<<" "<<primesoln[a][i+2]*f<<endl;
     #endif
     }
     #if DEBUG
