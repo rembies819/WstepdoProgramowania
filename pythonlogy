@@ -1,2 +1,77 @@
 http://wmii.uwm.edu.pl/~jakula/wd.html
 JetBrains PyCharm Community Edition
+
+
+"""
+ta funkcja zwaraca nic
+"""
+# komentarz
+# import math as mat
+import math
+# from math import pow
+
+print('Liczba pi to: ', math.pi)
+
+ala = 'Ala'
+magda = "Magda"
+zdanie = """ To jest
+tekst
+wielowierszowy"""
+
+liczba = 1
+liczba2 = 2.34
+
+
+# print(ala)
+# print(liczba)
+# print(liczba2)
+# print(id(ala))
+
+a = 8
+b = 4
+c = 3
+dzielenie = a/b
+print('Dzielenie to: ', dzielenie)
+dzielenie = a/c
+print('Dzielenie to: ', dzielenie)
+dodawanie = a+b
+print('Dodawanie to: ', dodawanie)
+dzielenie_calkowite = a//c
+print('Dzielenie calkowite to: ', dzielenie_calkowite)
+reszta = a % c
+print('Dzielenie z reszta to: ', reszta)
+potega = b ** c
+print('Potega to: ', potega)
+potega = pow(4, 3)
+print('Potega to', potega)
+
+d = pow(math.e, 10)
+print(d)
+e = pow((math.log(5 + math.exp(math.sin(8)))), 1/6)
+print(e)
+print(math.ceil(4.80))
+print(math.floor(3.55))
+print("światło")
+print('jaźń')
+imie = 'ADAM'
+nazwisko = 'REMBIEWSKI'
+print(imie.capitalize(), nazwisko.capitalize())
+tekst = """ona jest
+la la la
+i swiat sie nie zminia
+la
+"""
+print(tekst.count('la'))
+print(imie[1], imie[-1])
+print(tekst.split('la'))
+
+print('Dodanie %(liczba1)d do %(liczba2)d to %(wynik)d' % {'liczba1': 3, 'liczba2': 4, 'wynik': 7})
+print('Dodanie {0} do {1} to {2}'.format(3, 4, 7))
+liczba1, liczba2 = 3, 4
+print('Dodanie {1} do {0} to {2}'.format(liczba1, liczba2, liczba1 + liczba2))
+print(type(liczba1))
+print(type(ala))
+print('liczba1: ' + str(liczba1))
+
+print('%(liczba1)r %(liczba2)f %(liczba3)0x' % {'liczba1': ala, 'liczba2': 4, 'liczba3': 172})
+
