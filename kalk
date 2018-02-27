@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <float.h>
+int znak,a,b,c,d;
+int wynik;
+
+
+
+
+int main()
+{
+do{
+printf("Witaj, podaj liczbe by wybrać funkcje:   \n1 - dodawanie   \n2 - odejmowanie  \n3 - Warunek istnienia trojkata   \n4 - Potegowanie\n");
+scanf("%i",&a);
+if(a==1)
+{
+    printf("Podaj 1 liczbe: ");
+    scanf("%d",&b);
+    printf("Podaj 2 liczbe: ");
+    scanf("%d",&c);
+    printf("%d\n",dodawanie(b,c));
+}
+if(a==2)
+{
+    printf("Podaj 1 liczbe: ");
+    scanf("%d",&b);
+    printf("Podaj 2 liczbe: ");
+    scanf("%d",&c);
+    printf("%d\n",odejmowanie(b,c));
+}
+if(a==3)
+{
+ printf("Podaj 1 liczbe: ");
+    scanf("%d",&b);
+    printf("Podaj 2 liczbe: ");
+    scanf("%d",&c);
+    printf("Podaj 3 liczbe: ");
+    scanf("%d",&d);
+    printf("%d\n",warunekistnieniatrojkata(b,c,d));
+}
+if(a==4)
+{
+    printf("Podaj 1 liczbe: ");
+    scanf("%i",&b);
+    printf("Podaj 2 liczbe: ");
+    scanf("%i",&c);
+    printf("%i\n",potegowanie(b,c));
+}
+printf("Jezeli chcesz skonczyc liczyc wcisnij 0, jezeli nie wpisz jakikolwiek znak: ");
+scanf("%i",&a);
+if(a==0)
+    break;
+}
+while(1);
+
+    return 0;
+}
+
+int dodawanie(int a, int b)
+{
+    int wynik = a + b;
+    return wynik;
+}
+int odejmowanie(int a, int b)
+{
+    int wynik = a-b;
+    return wynik;
+}
+void warunekistnieniatrojkata(int a, int b,int c)
+{
+    if(a+b<c)
+    printf("To nie jest trójkąt. \n");
+    if(a+c<b)
+    printf("To nie jest trójkąt. \n");
+    if(b+c<a)
+    printf("To nie jest trójkąt. \n");
+    else
+    printf("Wszystko okey.\n");
+}
+int potegowanie(int a,int b)
+{
+    int wynik;
+    wynik=pow(a,b);
+    return wynik;
+}
+// dzielenie modulo
+// silnia
+// dodawanie modulo
