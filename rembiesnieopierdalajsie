@@ -1,0 +1,11 @@
+stworz dwie funkcje ktore pozwola ci dodac funkcjonalnosci dla podanych tablic
+dodaj usun
+tablica int 20
+po kazdej operacj wypisac co sie dzieje
+-------------------------------------------------------------------------------(3)
+1)rozbuduj funkcje add po pod funkcje sprawdzaja (funkcja w funkcji(3 funkcje) czy element zmiesci sie w liscie/kolejce/stosie
+2)zabezpiecz funckje realloc tak aby nie stalo sie nic zlego podczas zwrocenia nulla
+3)zmien funkcje w taki sposob aby dzialaly na dowolnym typie tablicy void *
+
+
+na ++++ sprobowac wrzucic program w np stos itp.
