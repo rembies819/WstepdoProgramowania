@@ -1,8 +1,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #define LIMIT 3
-void dodaj(int * cos);
-void usun(int * cos);
+void dodaj(int ** cos);
+void usun(int ** cos);
 int rozmiar=1;
 int main()
 {
@@ -18,12 +18,12 @@ int main()
      switch (wybor)
      {
      case 1:
-        dodaj(tablica);
+        dodaj(&tablica);
         break;
      case 2:
          if(rozmiar!=0)
          {
-          usun(tablica);
+          usun(&tablica);
          }
          else
          {
@@ -50,20 +50,20 @@ int main()
     free(tablica);
     return 0;
 }
-void dodaj(int * cos)
+void dodaj(int ** cos)
 {
     rozmiar=rozmiar+1;
     *cos =realloc(*cos,rozmiar*sizeof(int));
     int co;
     scanf("%d",&co);
-    cos[rozmiar-1]=co;
+    *(*cos+rozmiar -1) =co;
     printf("Wlasnie dodales: %d",co);
 }
-void usun(int * cos)
+void usun(int ** cos)
 {
     int ostatnia;
+    ostatnia=*(*cos+rozmiar-1);
     rozmiar=rozmiar-1;
     *cos=realloc(*cos,rozmiar*sizeof(int));
-    ostatnia=cos[rozmiar];
     printf("Wlasnie usunales: %d",ostatnia);
 }
