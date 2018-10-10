@@ -1,0 +1,122 @@
+// rembies.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
+//
+
+#include "pch.h"
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <locale>
+#include <vector>
+
+using namespace std;
+
+int potega(int x,int y)
+{
+	int wynik = x;
+	for (int i = 1; i < y; i++)
+	{
+		wynik *= x;
+	}
+	return wynik;
+}
+int factorial(int n)
+{
+	return (n == 1 || n == 0) ? 1 : factorial(n - 1) * n;
+}
+int ciag(int a)
+{
+	int b = 1;
+	for (int i = 1; i <= a; i++)
+	{
+		b *= i;
+	}
+	return b;
+}
+int fibo1(int a)
+{
+	if (a < 2)
+		return 1;
+	else
+		return fibo1(a - 2) + fibo1(a - 1);
+}
+int fibo2(int a)
+{
+	int wynik = 0;
+	for (int i = 1; i <= a; i++)
+	{
+		wynik += wynik;
+	}
+	return wynik;
+}
+bool zad22(string wyraz)
+{
+	string odwrocony;  
+	int dlugosc = wyraz.length(); 	
+	for (int i = 0; i < dlugosc; i++)
+		odwrocony += wyraz[dlugosc - i - 1];
+	return wyraz == odwrocony;
+}
+string rysowanie(string s, int i, char ch) {
+	if (i == 0)
+		return s;
+	s.push_back(ch);
+	return rysowanie(s, i - 1, ch);
+}
+float horner(int n, float wsp[20], float x)
+{
+	if (n == 0)
+		return wsp[0];
+	else
+		return horner(n - 1, wsp, x)*x + wsp[n];
+}
+
+
+int main()
+{
+	/*
+	cout << potega(2, 3) << endl;
+	*/
+	/*
+	string wyraz;
+	cin >> wyraz;
+	cout << zad22(wyraz) << endl;
+	*/
+	/*
+	string s = "";
+	cout << rysowanie(s, 155, '*');
+	*/
+	/*
+	int n;
+	float x, a[20];
+	cout<<"Podaj stopien wielomianu:  ";
+    cin>>n;
+    cout<<"Podaj X:  ";
+    cin>>x;
+    cout<<"Wprowadz wspolczynniki wielomianu: \n";
+    for (int i=0;i<=n;i++)
+    cin>>a[i];
+    cout<<"Wartosc wielomianu =  "<<horner(n,a,x)<<"\n";
+	*/
+	string tab[10][10];
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+
+			tab[i][j] = "*";
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+
+			cout << tab[i][j];
+		}
+		cout << endl;
+	}
+
+	system("pause");
+	return 0;
+}
