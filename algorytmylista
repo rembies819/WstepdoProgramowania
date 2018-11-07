@@ -1,0 +1,144 @@
+#include "pch.h"
+#include <iostream>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+
+struct osoba {
+	string imie;
+	string nazwisko;
+	int roku;
+	osoba *next;
+	osoba();
+};
+
+osoba::osoba() {
+	next = 0;
+}
+
+struct zad1 {
+	osoba*pierwsza;
+	void dodajoso(string imie, string nazwisko, int roku);
+	void usunoso(int nr);
+	void wyswietl();
+	void policz();
+	void wyswietlpodany(int a);
+	zad1();
+};
+
+void zad1::dodajoso(string imie, string nazwisko, int roku) {
+	osoba *nowa = new osoba;
+	nowa->imie = imie;
+	nowa->nazwisko = nazwisko;
+	nowa->roku = roku;
+	if (pierwsza == 0)
+	{
+		pierwsza = nowa;
+	}
+	else
+	{
+		osoba*temp = pierwsza;
+		while (temp->next) {
+			temp = temp->next;
+		}
+		temp->next = nowa;
+		nowa->next = 0;
+	}
+}
+
+zad1::zad1() {
+	pierwsza = 0;
+}
+
+void zad1::wyswietl()
+{
+	osoba *temp = pierwsza;
+
+	while (temp)
+	{
+		cout << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko <<  " rok urodzenia: " << temp->roku << endl;
+		temp = temp->next;
+	}
+}
+void zad1::usunoso(int nr)
+{
+
+	if (nr == 1)
+	{
+		osoba *temp = pierwsza;
+		pierwsza = temp->next; 
+	}
+
+	if (nr >= 2)
+	{
+		int j = 1;
+		osoba *temp = pierwsza;
+
+		while (temp)
+		{
+			if ((j + 1) == nr) break;
+
+			temp = temp->next;
+			j++;
+		}
+		if (temp->next->next == 0)
+			temp->next = 0;
+
+		else
+			temp->next = temp->next->next;
+	}
+}
+void zad1::policz()
+{
+	osoba *temp = pierwsza;
+	int i = 0;
+	while (temp) {
+		temp = temp->next;
+		i++;
+	}
+	cout << "\nLiczba elementow listy: " << i << endl;
+}
+void zad1::wyswietlpodany(int a)
+{
+	osoba *temp = pierwsza;
+	int liczba=1;
+
+	while (temp)
+		{
+			
+			temp = temp->next;
+			liczba = liczba+1;
+			if (liczba == a)
+			{
+				cout << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko << " rok urodzenia: " << temp->roku << endl;
+			}
+		}
+}
+int main()
+{
+	zad1 *baza = new zad1;
+
+	baza->dodajoso("Karzel", "Makkwacz", 1997);
+	baza->dodajoso("arkadiusz", "drugi", 2000);
+	baza->dodajoso("aaaaa", "drubbbbbbbgi", 2000);
+
+
+
+
+	baza -> wyswietl();
+
+	baza->policz();
+	baza->usunoso(2);
+	baza->wyswietl();
+	baza->policz();
+
+
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	baza->wyswietlpodany(2);
+	return 0;
+}
