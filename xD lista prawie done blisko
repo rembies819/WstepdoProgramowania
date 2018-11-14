@@ -1,0 +1,220 @@
+#include "pch.h"
+#include <iostream>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+
+struct osoba {
+	string imie;
+	string nazwisko;
+	int roku;
+	osoba *next;
+	osoba();
+};
+
+osoba::osoba() {
+	next = 0;
+}
+
+struct zad1 {
+	osoba*pierwsza;
+	void dodajoso(string imie, string nazwisko, int roku);
+	void usunoso(int nr);
+	void wyswietl();
+	void policz();
+	void wyswietlpodany(int a);
+	zad1();
+};
+
+void zad1::dodajoso(string imie, string nazwisko, int roku) {
+	osoba *nowa = new osoba;
+	nowa->imie = imie;
+	nowa->nazwisko = nazwisko;
+	nowa->roku = roku;
+	if (pierwsza == 0)
+	{
+		pierwsza = nowa;
+	}
+	else
+	{
+		string c,d;
+		int e;
+		osoba*temp = pierwsza;
+		while (temp->next) {
+			temp = temp->next;
+		}
+
+		temp->next = nowa;
+		while (pierwsza->nazwisko[0] < nowa->nazwisko[0])
+		{
+			c = pierwsza->nazwisko;
+			d = pierwsza->imie;
+			e = pierwsza->roku;
+			pierwsza->nazwisko = nowa->nazwisko;
+			pierwsza->imie = nowa->imie;
+			pierwsza->roku = nowa->roku;
+			nowa->nazwisko = c;
+			nowa->imie = d;
+			nowa->roku = e;
+		}
+		nowa->next = 0;
+	}
+}
+
+zad1::zad1() {
+	pierwsza = 0;
+}
+
+void zad1::wyswietl()
+{
+	osoba *temp = pierwsza;
+	int i=1;
+	while (temp)
+	{	
+		cout << i << ") " <<"imie: " << temp->imie << " nazwisko: " << temp->nazwisko <<  " rok urodzenia: " << temp->roku << endl;
+		temp = temp->next;
+		i++;
+	}
+}
+void zad1::usunoso(int nr)
+{
+
+	if (nr == 1)
+	{
+		osoba *temp = pierwsza;
+		pierwsza = temp->next; 
+	}
+
+	if (nr >= 2)
+	{
+		int j = 1;
+		osoba *temp = pierwsza;
+
+		while (temp)
+		{
+			if ((j + 1) == nr) break;
+
+			temp = temp->next;
+			j++;
+		}
+		if (temp->next->next == 0)
+			temp->next = 0;
+
+		else
+			temp->next = temp->next->next;
+	}
+}
+void zad1::policz()
+{
+	osoba *temp = pierwsza;
+	int i = 0;
+	while (temp) {
+		temp = temp->next;
+		i++;
+	}
+	cout << "\nLiczba elementow listy: " << i << endl;
+}
+void zad1::wyswietlpodany(int a)
+{
+	osoba *temp = pierwsza;
+	int liczba=1;
+
+	while (temp)
+		{
+			
+			temp = temp->next;
+			liczba = liczba+1;
+			if (liczba == a)
+			{
+				cout << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko << " rok urodzenia: " << temp->roku << endl;
+			}
+		}
+}
+int main()
+{
+	zad1 *baza = new zad1;
+
+	baza->dodajoso("Karzel", "Makkwacz", 1997);
+	baza->dodajoso("arkadiusz", "drugi", 2000);
+	baza->dodajoso("aaaaa", "drubbbbbbbgi", 2000);
+
+	
+
+	/*
+	baza -> wyswietl();
+
+	baza->policz();
+	baza->usunoso(2);
+	baza->wyswietl();
+	baza->policz();
+	baza->wyswietlpodany(2);
+
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << baza->pierwsza->imie[0];
+	*/
+
+
+
+	while (true)
+	{
+		int wybor;
+		string imiea, nazwiskob;
+		int rokc;
+		cout << "1. Dodaj osobe" << endl;
+		cout << "2. Usun poszczegolna osobe" << endl;
+		cout << "3. Wyswietl liste" << endl;
+		cout << "4. Policz elementy listy" << endl;
+		cout << "5. Wyswietl podana osobe" << endl;
+		cout << "6. Wyjdz" << endl;
+		cout << "Podaj pozycje z menu: ";
+		cout << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			cout << "Podaj imie: " << endl;
+			cin >> imiea;
+			cout << "Podaj nazwisko: " << endl;
+			cin >> nazwiskob;
+			cout << "Podaj rok urodzenia: " << endl;
+			cin >> rokc;
+			baza->dodajoso(imiea, nazwiskob, rokc);
+			break;
+		case 2:
+			int k;
+			cout << ("Ktora osobe chcesz usunac: ");
+			cin >> k;
+			baza->usunoso(k);
+			cout << endl;
+			cout << endl;
+			break;
+		case 3:
+			baza->wyswietl();
+			cout << endl;
+			cout << endl;
+			break;
+		case 4:
+			baza->policz();
+			cout << endl;
+			cout << endl;
+			break;
+		case 5:
+			int kk;
+			cout << ("Ktora osobe ktora chcesz wyswietlic: ");
+			cin >> kk;
+			baza->wyswietlpodany(kk);
+			cout << endl;
+			cout << endl;
+			break;
+		case 6:
+			return 0;
+			break;
+		}
+	}
+	return 0;
+}
