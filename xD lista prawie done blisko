@@ -1,3 +1,6 @@
+// lista jednokierunkowa.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
+//
+
 #include "pch.h"
 #include <iostream>
 #include <string.h>
@@ -25,6 +28,7 @@ struct zad1 {
 	void wyswietl();
 	void policz();
 	void wyswietlpodany(int a);
+	void sortuj();
 	zad1();
 };
 
@@ -39,30 +43,36 @@ void zad1::dodajoso(string imie, string nazwisko, int roku) {
 	}
 	else
 	{
-		string c,d;
-		int e;
+
 		osoba*temp = pierwsza;
 		while (temp->next) {
 			temp = temp->next;
 		}
-
 		temp->next = nowa;
-		while (pierwsza->nazwisko[0] < nowa->nazwisko[0])
-		{
-			c = pierwsza->nazwisko;
-			d = pierwsza->imie;
-			e = pierwsza->roku;
-			pierwsza->nazwisko = nowa->nazwisko;
-			pierwsza->imie = nowa->imie;
-			pierwsza->roku = nowa->roku;
-			nowa->nazwisko = c;
-			nowa->imie = d;
-			nowa->roku = e;
-		}
 		nowa->next = 0;
 	}
 }
-
+void zad1::sortuj()
+{
+	string c, d;
+	osoba *i;
+	int e;
+	for (i = pierwsza; i->next != NULL; i = i->next)
+	{
+			if (i->nazwisko[0] > i->next->nazwisko[0])
+			{
+				c = i->nazwisko;
+				d = i->imie;
+				e = i->roku;
+				i->nazwisko = i->next->nazwisko;
+				i->imie = i->next->imie;
+				i->roku = i->next->roku;
+				i->next->nazwisko = c;
+				i->next->imie = d;
+				i->next->roku = e;
+			}
+	}
+}
 zad1::zad1() {
 	pierwsza = 0;
 }
@@ -70,10 +80,10 @@ zad1::zad1() {
 void zad1::wyswietl()
 {
 	osoba *temp = pierwsza;
-	int i=1;
+	int i = 1;
 	while (temp)
-	{	
-		cout << i << ") " <<"imie: " << temp->imie << " nazwisko: " << temp->nazwisko <<  " rok urodzenia: " << temp->roku << endl;
+	{
+		cout << i << ") " << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko << " rok urodzenia: " << temp->roku << endl;
 		temp = temp->next;
 		i++;
 	}
@@ -84,7 +94,7 @@ void zad1::usunoso(int nr)
 	if (nr == 1)
 	{
 		osoba *temp = pierwsza;
-		pierwsza = temp->next; 
+		pierwsza = temp->next;
 	}
 
 	if (nr >= 2)
@@ -119,28 +129,24 @@ void zad1::policz()
 void zad1::wyswietlpodany(int a)
 {
 	osoba *temp = pierwsza;
-	int liczba=1;
+	int liczba = 1;
 
 	while (temp)
+	{
+
+		temp = temp->next;
+		liczba = liczba + 1;
+		if (liczba == a)
 		{
-			
-			temp = temp->next;
-			liczba = liczba+1;
-			if (liczba == a)
-			{
-				cout << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko << " rok urodzenia: " << temp->roku << endl;
-			}
+			cout << "imie: " << temp->imie << " nazwisko: " << temp->nazwisko << " rok urodzenia: " << temp->roku << endl;
 		}
+	}
 }
 int main()
 {
 	zad1 *baza = new zad1;
 
-	baza->dodajoso("Karzel", "Makkwacz", 1997);
-	baza->dodajoso("arkadiusz", "drugi", 2000);
-	baza->dodajoso("aaaaa", "drubbbbbbbgi", 2000);
 
-	
 
 	/*
 	baza -> wyswietl();
@@ -194,6 +200,7 @@ int main()
 			cout << endl;
 			break;
 		case 3:
+			baza->sortuj();
 			baza->wyswietl();
 			cout << endl;
 			cout << endl;
