@@ -1,0 +1,124 @@
+#include "pch.h"
+#include <iostream>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+
+struct osoba {
+	int liczba;
+	osoba *next;
+	osoba();
+};
+
+osoba::osoba() {
+	next = 0;
+}
+
+struct zad1 {
+	osoba*pierwsza;
+	void dodajoso(int liczba);
+	void usunoso();
+	void wyswietl();
+	void policz();
+	zad1();
+};
+
+void zad1::dodajoso(int liczba) {
+	osoba *nowa = new osoba;
+	nowa->liczba = liczba;
+	if (pierwsza == 0)
+	{
+		pierwsza = nowa;
+	}
+	else
+	{
+
+		osoba*temp = pierwsza;
+		while (temp->next) {
+			temp = temp->next;
+		}
+		temp->next = nowa;
+		nowa->next = 0;
+	}
+}
+
+zad1::zad1() {
+	pierwsza = 0;
+}
+
+void zad1::wyswietl()
+{
+	osoba *temp = pierwsza;
+	int i = 1;
+	while (temp)
+	{
+		cout << i << ") " <<temp->liczba << endl;
+		temp = temp->next;
+		i++;
+	}
+}
+void zad1::usunoso()
+{
+		osoba *temp = pierwsza;
+		if (temp->next != NULL)
+		{
+			temp = temp->next;
+			temp->next = NULL;
+			
+		}
+
+}
+void zad1::policz()
+{
+	osoba *temp = pierwsza;
+	int i = 0;
+	while (temp) {
+		temp = temp->next;
+		i++;
+	}
+	cout << "\nLiczba elementow listy: " << i << endl;
+}
+int main()
+{
+	zad1 *baza = new zad1;
+
+
+
+	while (true)
+	{
+		int wybor;
+		string imiea, nazwiskob;
+		int rokc;
+		cout << "1. Dodaj osobe" << endl;
+		cout << "2. Usun poszczegolna osobe" << endl;
+		cout << "3. Wyswietl liste" << endl;
+		cout << "4. Wyjdz" << endl;
+		cout << "Podaj pozycje z menu: ";
+		cout << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			cout << "Podaj liczbe: " << endl;
+			cin >> rokc;
+			baza->dodajoso(rokc);
+			break;
+		case 2:
+			baza->usunoso();
+			cout << endl;
+			cout << endl;
+			break;
+		case 3:
+			baza->wyswietl();
+			cout << endl;
+			cout << endl;
+			break;
+		case 4:
+			return 0;
+			break;
+		}
+	}
+	return 0;
+}
