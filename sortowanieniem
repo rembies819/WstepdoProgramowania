@@ -1,0 +1,106 @@
+// sortowanie.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
+//
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <time.h>
+#include <conio.h>
+#include <ctime>
+
+using namespace std;
+
+void sortowanie_przez_wstawianie(int n, int *tab)
+{
+	int pom, j;
+	for (int i = 1; i < n; i++)
+	{
+
+		pom = tab[i];
+		j = i - 1;
+
+		
+		while (j >= 0 && tab[j] > pom)
+		{
+			tab[j + 1] = tab[j]; 
+			--j;
+		}
+		tab[j + 1] = pom; 
+	}
+}
+
+int main()
+{
+	int size;
+	cout << "Podaj rozmiar tablicy: " << endl;
+	cin >> size;
+	int suma = 0;
+	int suma2 = 0;
+
+	int* tablica =new int[size];
+ 
+	string nazwa,nazwa1;
+	ifstream plik;
+	cout << "Podaj nazwe pliku: " << endl;
+	cin >> nazwa;
+	plik.open(nazwa.c_str());
+	if (!plik.good())
+	{
+		cout << "Plik nie istnieje lub jego nazwa jest nie poprawna";
+		return 0;
+	}
+	for (int i = 0; i < size;i++)
+	{
+		plik >> tablica[i];
+		if (plik.eof())
+		{
+			cout << "W pliku txt brakuje tyle liczb" << endl;
+				return 0;
+		}
+	}
+	for (int i = 0; i < size; i++)
+	{
+		suma += tablica[i];
+	}
+	cout << "Suma liczb w tablicy wynosi: "<<suma << endl;
+	/*
+	for (int i = 0; i < size; i++)
+	{
+		cout<<tablica[i]<<", ";
+	}
+	*/
+	int times, timed;
+	times = clock();
+	time_t start, koniec;
+	time(&start);
+	clock_t startb;
+	double duration;
+	startb = std::clock();
+	sortowanie_przez_wstawianie(size, tablica);
+	timed = clock();
+	times = timed - times;
+	duration = (std::clock() - startb) / (double)(CLOCKS_PER_SEC/1000);
+	time(&koniec);
+	for (int i = 0; i < size; i++)
+	{
+		suma2 += tablica[i];
+	}
+	cout << endl;
+	cout << "Suma liczb w tablicy po sortowaniu wynosi: " << suma2 << endl;
+	cout << "Podaj nazwe pliku do zapisu: " << endl;
+	cin >> nazwa1;
+	fstream plik2;
+	plik2.open(nazwa1.c_str(), ios::out);
+	if (!plik2.good())
+		cout << "Plik nie istnieje lub jego nazwa jest nie poprawna";
+	for (int i = 0; i < size; i++)
+	{
+		plik2 << tablica[i]<<" ";
+	}
+	double roznica = difftime(koniec, start);
+
+	delete []tablica;
+	cout << "Sortowanie zajelo " <<times<<" milisekund"<< endl;
+}
+
